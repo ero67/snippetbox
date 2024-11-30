@@ -1,0 +1,58 @@
+CSS
+
+/* General Dark Mode Styling */
+body {
+    background-color: #282c34;  /* Dark background */
+    color: #abb2bf;               /* Light text */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #c678dd;            /* Purple for headings */
+}
+
+a {
+    color: #56b6c2;             /* Cyan for links */
+}
+
+/* Code Block Styling for Dark Mode */
+pre, code {
+    background-color: #21252b; /* Slightly lighter dark background for code */
+    color: #abb2bf;           /* Light text for code */
+    font-family: Menlo, Consolas, Monaco, "Courier New", monospace; 
+    font-size: 14px; 
+    line-height: 1.5; 
+    padding: 10px; 
+    border-radius: 5px; 
+    overflow-x: auto;
+}
+
+figure.code > pre {
+    overflow-y: auto;  /* Enable vertical scrolling */
+    max-height: 80vh;
+ 
+}
+
+/* Code Element Colors (adjust as desired) */
+code .keyword { color: #c678dd; }  /* Keywords (purple) */
+code .comment { color: #5c6370; }  /* Comments (dark gray) */
+code .string { color: #98c379; }    /* Strings (green) */
+code .number { color: #d19a66; }   /* Numbers (orange) */
+code .function { color: #61afef; }  /* Functions (blue) */
+
+/* Style code block headers (adjust selectors if needed) */
+pre > div.code_header, /* Target Calibre's specific header structure */
+code > div.code_header {
+    background-color: #21252b; /* Match the code block background */
+    color: #abb2bf;             /* Light text for readability */
+    padding: 5px 10px;         /* Add padding around the header */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+/* Style code block headers (tailored to your HTML) */
+figure.code > figcaption {  
+    background-color: #21252b; /* Match the code block background */
+    color: #abb2bf;             /* Light text for readability */
+    padding: 5px 10px;         /* Add padding around the header */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
