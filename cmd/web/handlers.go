@@ -91,6 +91,7 @@ func (app *application) signupUserForm(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
+// test changes
 func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
@@ -129,37 +130,37 @@ func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) loginUserForm(w http.ResponseWriter, r *http.Request) {
-    app.render(w, r, "login.page.tmpl", &templateData{
-        Form: forms.New(nil),
-    })
+	app.render(w, r, "login.page.tmpl", &templateData{
+		Form: forms.New(nil),
+	})
 
 }
 
 func (app *application) loginUser(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-    if err != nil {
-        app.clientError(w, http.StatusBadRequest)
-        return
-    }
-    form:= forms.New(r.PostForm)
-    id, err := app.users.Authenticate(form.Get("email"), form.Get("password"))
-    if err == models.ErrInvalidCredentials {
-        form.Errors.Add("generic", "Email or Password is incorrect")
-        app.render(w, r, "login.page.tmpl", &templateData{Form: form})
-        return
-    } else if err != nil {
-        app.serverError(w, err)
-        return
-    }
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	form := forms.New(r.PostForm)
+	id, err := app.users.Authenticate(form.Get("email"), form.Get("password"))
+	if err == models.ErrInvalidCredentials {
+		form.Errors.Add("generic", "Email or Password is incorrect")
+		app.render(w, r, "login.page.tmpl", &templateData{Form: form})
+		return
+	} else if err != nil {
+		app.serverError(w, err)
+		return
+	}
 
-    app.session.Put(r, "userID", id)
-    http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
+	app.session.Put(r, "userID", id)
+	http.Redirect(w, r, "/snippet/create", http.StatusSeeOther)
 }
 
 func (app *application) logoutUser(w http.ResponseWriter, r *http.Request) {
-    // Remove the userID from the session data so that the user is 'logged out'.
-    app.session.Remove(r, "userID")
-    // Add a flash message to the session to confirm to the user that they've been logged out.
-    app.session.Put(r, "flash", "You've been logged out successfully!")
-    http.Redirect(w, r, "/", 303)
+	// Remove the userID from the session data so that the user is 'logged out'.
+	app.session.Remove(r, "userID")
+	// Add a flash message to the session to confirm to the user that they've been logged out.
+	app.session.Put(r, "flash", "You've been logged out successfully!")
+	http.Redirect(w, r, "/", 303)
 }
